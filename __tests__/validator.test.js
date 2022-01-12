@@ -8,14 +8,12 @@ describe('Testing the validator function', () => {
 
   it('Should validate that the name key exists in the query', async () => {
     const response = await request.get('/people?name=savagetest');
-    // console.log(response);
-    expect(response.text).toEqual('savagetest');
+    expect(response.body.name).toEqual('savagetest');
     expect(response.status).toEqual(200);
   });
 
   it('Should send a 500 status if name is not in the query', async () => {
     const response = await request.get('/people');
-    // console.log(response);
     expect(response.status).toEqual(500);
   });
 });
